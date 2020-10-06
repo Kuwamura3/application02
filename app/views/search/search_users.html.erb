@@ -3,23 +3,28 @@
     Users search for ""
   </h2>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Image</th>
-        <th>Name</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @contents.each do |user| %>
+	<% if @contents.count == 0 %>
+		ワードに関連するユーザーはいません
+	<% else %>
+
+    <table class="table">
+      <thead>
         <tr>
-        	<td><%= attachment_image_tag(user, :profile_image, :fill, 50, 50, fallback: "no-image-mini.jpg") %></td>
-
-          <td><%= user.name %></td>
-
-  					<td><%= link_to "Show", user_path(user), class: "user_#{user.id}" %></td>
+          <th>Image</th>
+          <th>Name</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @contents.each do |user| %>
+          <tr>
+          	<td><%= attachment_image_tag(user, :profile_image, :fill, 50, 50, fallback: "no-image-mini.jpg") %></td>
+
+            <td><%= user.name %></td>
+
+    					<td><%= link_to "Show", user_path(user), class: "user_#{user.id}" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
 </div>

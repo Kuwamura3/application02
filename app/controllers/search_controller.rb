@@ -2,8 +2,13 @@ class SearchController < ApplicationController
 
   def search
     if params[:search_content]
-      @contents = User.where("name LIKE ?", "%#{params[:search_content]}%")
-      render :search_users
+      if params[:search_model] == "1"
+        @contents = User.where("name LIKE ?", "%#{params[:search_content]}%")
+        render :search_users
+      else
+        @contents = Book.where("title LIKE ?", "%#{params[:search_content]}%")
+        render :search_books
+      end
     else
       @contents = User.none
       redirect_to search_users_path
