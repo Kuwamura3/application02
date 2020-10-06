@@ -41,12 +41,15 @@
 
     <div class="container">
       <% if user_signed_in? %>
-        <div class="search-form">
-          <%= form_with(url: search_path, method: :get) do |f| %>
-            <%= f.text_field "search[content]" %>
-            <%= f.select :data, {"User":1, "Book":2}, {class: "form-control", required: true} %>
-            <%= f.submit "検索" %>
-          <% end %>
+        <div class="row">
+          <div class="col-xs-7 col-xs-offset-4">
+            <div class="search-form">
+              <%= form_with(url: search_path, method: :get, local: true) do |f| %>
+                <%= f.text_field :search_content %>
+                <%= f.submit "検索" %>
+              <% end %>
+            </div>
+          </div>
         </div>
       <% end %>
 
