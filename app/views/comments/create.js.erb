@@ -1,0 +1,3 @@
+<!--↓部分的に更新する箇所の指定-->
+$("#comments_list").html("<%= j(render partial: "comments/comments", locals: { comments: @comments}) %>");
+$("#comments_form").html("<%= j(render partial: "comments/form", locals: { book: @book, comment: @comment}) %>");

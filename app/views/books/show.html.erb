@@ -47,14 +47,13 @@
 
 <!--コメント編集中↓-->
 
-			<div class="comments_list">
-				<%= render partial: "comment/comment", locals: { : } %>
+			<div id="comments_list">
+				<%= render partial: "comments/comments", locals: { comments: @comments} %>
 			</div>
 
-			<%= form_with(model:[@book, @comment], remote: true) do |f| %>
-				<%= f.text_area :comment, rows:"5", class: "col-xs-11 comment" %>
-				<%= f.submit "送信" %>
-			<% end %>
+			<div id="comments_form">
+				<%= render partial: "comments/form", locals: { book: @book, comment: @comment} %>
+			</div>
 
 	</div>
 </div>
