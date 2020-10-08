@@ -45,26 +45,13 @@
 				</tr>
 			</table>
 
-			<% @comments.each do |comment| %>
-				<% if comment.book_id == @book.id %>
-					<div>
-						<div>
-							<%= link_to user_path(comment.user) do %>
-								<%= attachment_image_tag(comment.user, :profile_image, :fill, 50, 50, fallback: "no-image-mini.jpg") %>
-							<% end %>
-							<%= comment.user.name %>
-							<% if comment.user.id == current_user.id %>
-								<%= link_to "Destroy", book_comment_path(comment.book, comment), method: :delete, class: "btn-sm btn-danger destroy_comment_#{comment.id}" %></td>
-							<% end %>
-						</div>
-						<div>
-							<%= comment.comment %>
-						</div>
-					</div>
-				<% end %>
-			<% end %>
+<!--コメント編集中↓-->
 
-			<%= form_with(model:[@book, @comment], local: true) do |f| %>
+			<div class="comments_list">
+				<%= render partial: "comment/comment", locals: { : } %>
+			</div>
+
+			<%= form_with(model:[@book, @comment], remote: true) do |f| %>
 				<%= f.text_area :comment, rows:"5", class: "col-xs-11 comment" %>
 				<%= f.submit "送信" %>
 			<% end %>
